@@ -52,7 +52,7 @@ while True:
         frame_counter = 0  # Or whatever as long as it is the same as next line
         cap_gif.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
-    gif_image = cv2.resize(gif_image, (400, 150), interpolation=cv2.INTER_AREA)
+    gif_image = cv2.resize(gif_image, (400, 200), interpolation=cv2.INTER_AREA)
 
     # Find the hand and its landmarks
     hands, img = detector.findHands(img)  # with draw
@@ -66,7 +66,7 @@ while True:
         centerPoint1 = hand1['center']  # center of the hand cx,cy
         fingers1 = detector.fingersUp(hand1)
         if fingers1 == [1, 1, 1, 0, 0]:
-            if lmList1[12][0] > 800 and lmList1[12][0] < 1200 and lmList1[12][1] > 150 and lmList1[12][1] < 300 and not flag:
+            if lmList1[12][0] > 800 and lmList1[12][0] < 1200 and lmList1[12][1] > 150 and lmList1[12][1] < 350 and not flag:
                 flag = True
                 pyautogui.press('space')
         if fingers1 == [1, 1, 1, 1, 1]:
@@ -80,7 +80,7 @@ while True:
                 down_flag = True
     # # Display
     if not flag:
-        img[150:300, 200:600] = gif_image
+        img[150:350, 800:1200] = gif_image
         cv2.imshow("Image", img)
     else:
         if left_flag:
